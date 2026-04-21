@@ -8,7 +8,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 // TaskManager 任务生命周期编排接口

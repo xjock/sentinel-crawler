@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/lucavallin/sentinel-crawler/internal/config"
+	"github.com/xjock/sentinel-crawler/internal/config"
 )
 
 // tokenResponse OAuth2 token 响应

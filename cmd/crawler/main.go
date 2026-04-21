@@ -9,13 +9,13 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/lucavallin/sentinel-crawler/internal/config"
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
-	"github.com/lucavallin/sentinel-crawler/internal/provider/copernicus"
-	"github.com/lucavallin/sentinel-crawler/internal/queue/memory"
-	"github.com/lucavallin/sentinel-crawler/internal/repository/sqlite"
-	"github.com/lucavallin/sentinel-crawler/internal/usecase"
-	"github.com/lucavallin/sentinel-crawler/internal/worker"
+	"github.com/xjock/sentinel-crawler/internal/config"
+	"github.com/xjock/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/provider/copernicus"
+	"github.com/xjock/sentinel-crawler/internal/queue/memory"
+	"github.com/xjock/sentinel-crawler/internal/repository/sqlite"
+	"github.com/xjock/sentinel-crawler/internal/usecase"
+	"github.com/xjock/sentinel-crawler/internal/worker"
 )
 
 func main() {

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 // ProductRepository SQLite 实现

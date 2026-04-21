@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 // Downloader 影像下载编排接口

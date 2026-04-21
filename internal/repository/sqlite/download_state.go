@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 // DownloadStateRepository SQLite 实现

@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/lucavallin/sentinel-crawler/internal/api/handler"
-	"github.com/lucavallin/sentinel-crawler/internal/api/middleware"
-	"github.com/lucavallin/sentinel-crawler/internal/usecase"
+	"github.com/xjock/sentinel-crawler/internal/api/handler"
+	"github.com/xjock/sentinel-crawler/internal/api/middleware"
+	"github.com/xjock/sentinel-crawler/internal/usecase"
 )
 
 // Server HTTP API 服务

@@ -211,7 +211,7 @@ package usecase
 
 import (
     "context"
-    "github.com/lucavallin/sentinel-crawler/internal/domain"
+    "github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 // Crawler 元数据抓取编排

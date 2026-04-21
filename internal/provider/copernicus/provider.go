@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lucavallin/sentinel-crawler/internal/config"
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/config"
+	"github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 // odataResponse OData 搜索响应

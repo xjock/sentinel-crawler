@@ -5,7 +5,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 // TaskQueue 内存队列实现

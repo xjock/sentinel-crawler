@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
-	"github.com/lucavallin/sentinel-crawler/internal/usecase"
+	"github.com/xjock/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/usecase"
 )
 
 // TaskHandler 任务管理 Handler

@@ -1,4 +1,4 @@
-module github.com/lucavallin/sentinel-crawler
+module github.com/xjock/sentinel-crawler
 
 go 1.25.0
 

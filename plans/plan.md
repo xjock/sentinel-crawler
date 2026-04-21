@@ -300,7 +300,7 @@ package usecase
 
 import (
     "context"
-    "github.com/lucavallin/sentinel-crawler/internal/domain"
+    "github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 type Crawler interface {
@@ -344,7 +344,7 @@ package usecase
 
 import (
     "context"
-    "github.com/lucavallin/sentinel-crawler/internal/domain"
+    "github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 type Downloader interface {
@@ -393,7 +393,7 @@ package usecase
 
 import (
     "context"
-    "github.com/lucavallin/sentinel-crawler/internal/domain"
+    "github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 type TaskManager interface {
@@ -537,7 +537,7 @@ package provider
 
 import (
     "sync"
-    "github.com/lucavallin/sentinel-crawler/internal/domain"
+    "github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 type Factory func(cfg CopernicusConfig) (domain.Provider, error)
@@ -580,9 +580,9 @@ package repository
 
 import (
     "fmt"
-    "github.com/lucavallin/sentinel-crawler/internal/domain"
-    "github.com/lucavallin/sentinel-crawler/internal/repository/postgres"
-    "github.com/lucavallin/sentinel-crawler/internal/repository/sqlite"
+    "github.com/xjock/sentinel-crawler/internal/domain"
+    "github.com/xjock/sentinel-crawler/internal/repository/postgres"
+    "github.com/xjock/sentinel-crawler/internal/repository/sqlite"
 )
 
 func NewProductRepository(driver, dsn string) (domain.ProductRepository, error) {

@@ -21,7 +21,7 @@
 ### 安装
 
 ```bash
-git clone https://github.com/lucavallin/sentinel-crawler.git
+git clone https://github.com/xjock/sentinel-crawler.git
 cd sentinel-crawler
 go mod tidy
 ```

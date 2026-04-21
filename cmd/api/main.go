@@ -12,11 +12,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/lucavallin/sentinel-crawler/internal/api"
-	"github.com/lucavallin/sentinel-crawler/internal/config"
-	"github.com/lucavallin/sentinel-crawler/internal/queue/memory"
-	"github.com/lucavallin/sentinel-crawler/internal/repository/sqlite"
-	"github.com/lucavallin/sentinel-crawler/internal/usecase"
+	"github.com/xjock/sentinel-crawler/internal/api"
+	"github.com/xjock/sentinel-crawler/internal/config"
+	"github.com/xjock/sentinel-crawler/internal/queue/memory"
+	"github.com/xjock/sentinel-crawler/internal/repository/sqlite"
+	"github.com/xjock/sentinel-crawler/internal/usecase"
 )
 
 func main() {

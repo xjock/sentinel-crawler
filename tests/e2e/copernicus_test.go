@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lucavallin/sentinel-crawler/internal/config"
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
-	"github.com/lucavallin/sentinel-crawler/internal/provider/copernicus"
+	"github.com/xjock/sentinel-crawler/internal/config"
+	"github.com/xjock/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/provider/copernicus"
 )
 
 // 运行 e2e 测试：

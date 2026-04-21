@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/lucavallin/sentinel-crawler/internal/config"
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/config"
+	"github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 // Factory Provider 工厂函数类型

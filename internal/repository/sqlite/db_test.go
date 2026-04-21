@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lucavallin/sentinel-crawler/internal/domain"
+	"github.com/xjock/sentinel-crawler/internal/domain"
 )
 
 func setupTestDB(t *testing.T) *ProductRepository {
