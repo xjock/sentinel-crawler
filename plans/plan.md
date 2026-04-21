@@ -435,7 +435,7 @@ import "github.com/spf13/viper"
 type Config struct {
     Server    ServerConfig    `mapstructure:"server"`
     Database  DatabaseConfig  `mapstructure:"database"`
-    Provider  ProviderConfig  `mapstructure:"provider"`
+    Providers ProvidersConfig `mapstructure:"providers"`
     Crawler   CrawlerConfig   `mapstructure:"crawler"`
     Download  DownloadConfig  `mapstructure:"download"`
     Queue     QueueConfig     `mapstructure:"queue"`
@@ -455,11 +455,34 @@ type DatabaseConfig struct {
     PoolSize int    `mapstructure:"pool_size"`
 }
 
-type ProviderConfig struct {
-    Name        string         `mapstructure:"name"`
-    Credentials map[string]any `mapstructure:"credentials"`
-    BaseURL     string         `mapstructure:"base_url"`
-    Timeout     int            `mapstructure:"timeout"`
+type ProvidersConfig struct {
+    Active     string             `mapstructure:"active"`     // 当前激活的 Provider 名称
+    Copernicus CopernicusConfig   `mapstructure:"copernicus"`
+    AWS        AWSConfig          `mapstructure:"aws"`        // 预留
+}
+
+// CopernicusConfig Copernicus Data Space 专用配置
+type CopernicusConfig struct {
+    Enabled          bool   `mapstructure:"enabled"`
+    BaseURL          string `mapstructure:"base_url"`            // OData Catalogue API
+    DownloadBaseURL  string `mapstructure:"download_base_url"`   // 下载服务地址（与搜索可能不同）
+    TokenURL         string `mapstructure:"token_url"`           // OAuth2 Token 端点
+    ClientID         string `mapstructure:"client_id"`           // OAuth2 Client ID
+    ClientSecret     string `mapstructure:"client_secret"`       // OAuth2 Client Secret
+    Username         string `mapstructure:"username"`            // 用户名认证（备选）
+    Password         string `mapstructure:"password"`            // 密码认证（备选）
+    Timeout          int    `mapstructure:"timeout"`             // HTTP 请求超时（秒）
+    RateLimit        int    `mapstructure:"rate_limit"`          // 每秒请求数限制
+    MaxResultsPerQuery int  `mapstructure:"max_results_per_query"` // 单次搜索最大返回数
+}
+
+// AWSConfig AWS Open Data 预留配置
+type AWSConfig struct {
+    Enabled   bool   `mapstructure:"enabled"`
+    Region    string `mapstructure:"region"`
+    Bucket    string `mapstructure:"bucket"`
+    AccessKey string `mapstructure:"access_key"`
+    SecretKey string `mapstructure:"secret_key"`
 }
 
 type CrawlerConfig struct {
@@ -517,7 +540,7 @@ import (
     "github.com/lucavallin/sentinel-crawler/internal/domain"
 )
 
-type Factory func(cfg map[string]any) (domain.Provider, error)
+type Factory func(cfg CopernicusConfig) (domain.Provider, error)
 
 var (
     registry = make(map[string]Factory)
@@ -592,13 +615,26 @@ database:
   dsn: ./sentinel.db
   pool_size: 10
 
-provider:
-  name: copernicus
-  base_url: https://catalogue.dataspace.copernicus.eu/odata/v1
-  timeout: 30
-  credentials:
+providers:
+  active: copernicus
+  copernicus:
+    enabled: true
+    base_url: https://catalogue.dataspace.copernicus.eu/odata/v1
+    download_base_url: https://download.dataspace.copernicus.eu
+    token_url: https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token
+    client_id: ""
+    client_secret: ""
     username: ""
     password: ""
+    timeout: 30
+    rate_limit: 10
+    max_results_per_query: 1000
+  aws:
+    enabled: false
+    region: eu-central-1
+    bucket: ""
+    access_key: ""
+    secret_key: ""
 
 crawler:
   page_size: 100

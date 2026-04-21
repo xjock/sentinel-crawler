@@ -416,11 +416,71 @@ sequenceDiagram
 
 ## 10. 配置管理
 
+### 10.1 配置分层
+
 支持多级配置覆盖（优先级从低到高）：
 1. 默认值（代码中内置）
 2. 配置文件（`configs/config.yaml`）
 3. 环境变量（`SENTINEL_CRAWLER_*`）
 4. 命令行参数
+
+### 10.2 Provider 配置设计
+
+每个数据源拥有独立的强类型配置结构，避免使用 `map[string]any` 导致类型不安全：
+
+```go
+type ProvidersConfig struct {
+    Active     string             // 当前激活的 Provider 名称
+    Copernicus CopernicusConfig   // Copernicus Data Space 配置
+    AWS        AWSConfig          // AWS Open Data 预留
+}
+
+type CopernicusConfig struct {
+    Enabled             bool
+    BaseURL             string  // OData Catalogue API 地址
+    DownloadBaseURL     string  // 下载服务地址（可能与搜索不同）
+    TokenURL            string  // OAuth2 Token 端点
+    ClientID            string  // OAuth2 Client ID
+    ClientSecret        string  // OAuth2 Client Secret
+    Username            string  // 用户名认证（备选方案）
+    Password            string  // 密码认证（备选方案）
+    Timeout             int     // HTTP 请求超时（秒）
+    RateLimit           int     // 每秒请求数限制
+    MaxResultsPerQuery  int     // 单次搜索最大返回数
+}
+```
+
+**设计要点**：
+- **激活机制**：通过 `ProvidersConfig.Active` 指定当前使用的 Provider，而非单一全局配置
+- **独立地址**：`BaseURL` 与 `DownloadBaseURL` 分离，Copernicus 的搜索与下载服务部署在不同域名
+- **双认证模式**：支持 OAuth2 Client Credentials（推荐）和用户名密码（备选）
+- **限流保护**：`RateLimit` 防止触发 Copernicus API 的限流策略
+- **环境变量注入**：敏感字段（`ClientSecret`、`Password`）通过环境变量覆盖，不写入配置文件
+
+### 10.3 配置示例
+
+```yaml
+providers:
+  active: copernicus
+  copernicus:
+    enabled: true
+    base_url: https://catalogue.dataspace.copernicus.eu/odata/v1
+    download_base_url: https://download.dataspace.copernicus.eu
+    token_url: https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token
+    client_id: ""
+    client_secret: ""           # 通过 SENTINEL_CRAWLER_PROVIDERS_COPERNICUS_CLIENT_SECRET 注入
+    username: ""
+    password: ""                # 通过 SENTINEL_CRAWLER_PROVIDERS_COPERNICUS_PASSWORD 注入
+    timeout: 30
+    rate_limit: 10
+    max_results_per_query: 1000
+  aws:
+    enabled: false
+    region: eu-central-1
+    bucket: ""
+    access_key: ""
+    secret_key: ""
+```
 
 ## 11. 部署架构
 
